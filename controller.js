@@ -48,3 +48,20 @@ exports.tambahBuku = function(req, res){
             }  
         });
 };
+
+//mengubah data berdasarkan id
+exports.ubahBuku = function(req,res){
+    var id = req.body.id_buku;
+    var tahun_buku = req.body.tahun_buku;
+    var judul_buku = req.body.judul_buku;
+    var pengarang = req.body.pengarang;
+
+    connection.query('UPDATE buku SET tahun_buku=?, judul_buku=?, pengarang=? WHERE id_buku=?', [tahun_buku,judul_buku,pengarang,id],
+    function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+        } else {
+            response.ok("Berhasil ubah data",res)
+        }
+    });
+};
