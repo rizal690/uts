@@ -32,3 +32,19 @@ exports.tampilberdasarkanid = function (req, res) {
         });
 };
 
+//menambahkan data buku
+exports.tambahBuku = function(req, res){
+    var tahun_buku = req.body.tahun_buku;
+    var judul_buku = req.body.judul_buku;
+    var pengarang = req.body.pengarang;
+
+    connection.query('INSERT INTO buku (tahun_buku,judul_buku,pengarang) VALUES(?,?,?)',
+        [tahun_buku, judul_buku, pengarang],
+        function (error, rows, fields){
+            if(error) {
+                console.log(error);
+            } else {
+                response.ok("berhasil menambahkan data!",res)
+            }  
+        });
+};
