@@ -65,3 +65,18 @@ exports.ubahBuku = function(req,res){
         }
     });
 };
+
+//Menghapus data berdasarkan id
+exports.hapusBuku = function (req, res) {
+    var id = req.body.id_buku;
+ 
+     connection.query('DELETE FROM buku WHERE id_buku=?',[id],
+         function (error, rows, fields) {
+             if (error) {
+                 console.log(error);
+             } else {
+                 response.ok("Berhasil hapus data",res)
+             }
+         });
+ };
+
